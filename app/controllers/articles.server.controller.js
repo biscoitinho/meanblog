@@ -78,6 +78,10 @@ exports.list = function(req, res) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
+    } else if(!req.isAuthenticated()){
+        return res.status(530).send({
+          message: "requires login"
+        });
 		} else {
 			res.json(articles);
 		}
